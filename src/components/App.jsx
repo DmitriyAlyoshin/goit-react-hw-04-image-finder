@@ -11,7 +11,7 @@ import Loader from './Loader/Loader';
 const App = () => {
   const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [lastPage, setLastPage] = useState(0);
@@ -58,7 +58,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (page === 0) return;
+    if (!query) return;
 
     const fetchImagesByQuery = async searchQuery => {
       setIsLoading(true);

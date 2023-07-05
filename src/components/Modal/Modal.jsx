@@ -12,14 +12,22 @@ const Modal = ({ onClose, largeImageURL }) => {
     };
 
     window.addEventListener('keydown', handleKeyDown); 
+    document.body.style.overflow = 'hidden';
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown); 
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'visible';
     };
   }, [onClose]);
 
+    const closeByBackdrop = e => {
+      if (e.currentTarget === e.target) {
+        onClose();
+      }
+    };
+
   return (
-    <div className={css.overlay} onClick={onClose}>
+    <div className={css.overlay} onClick={closeByBackdrop}>
       <div className={css.modal}>
         <img className={css.modal__image} src={largeImageURL} alt="" />
       </div>
